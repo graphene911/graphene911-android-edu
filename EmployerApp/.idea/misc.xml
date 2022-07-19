@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dore9/AndroidStudioProjects/EmployerApp/app/src/main/res/layout/activity_edit.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/dore9/AndroidStudioProjects/EmployerApp/app/src/main/res/layout/activity_main.xml" value="0.18115942028985507" />
+        <entry key="..\:/Users/dore9/AndroidStudioProjects/EmployerApp/app/src/main/res/layout/employee_row.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/dore9/AndroidStudioProjects/EmployerApp/app/src/main/res/layout/employer_row.xml" value="0.18115942028985507" />
       </map>
     </option>

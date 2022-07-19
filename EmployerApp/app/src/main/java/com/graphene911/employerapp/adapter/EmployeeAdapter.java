@@ -1,6 +1,7 @@
 package com.graphene911.employerapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.graphene911.employerapp.EditActivity;
+import com.graphene911.employerapp.MainActivity;
 import com.graphene911.employerapp.R;
 import com.graphene911.employerapp.model.Employee;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHolder> {
+
     Context context;
     List<Employee> employeeList;
 
@@ -34,22 +41,22 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EmployeeAdapter.ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull EmployeeAdapter.ViewHolder holder, int position) {
+        // 화면에 표시
         Employee employee = employeeList.get(position);
 
         holder.txtName.setText(employee.name);
-        holder.txtAge.setText("나이 : " + employee.age + "세");
-        holder.txtSalary.setText("연봉 : $" + employee.salary);
+        holder.txtAge.setText("나이 :" + employee.age + "세");
+        holder.txtSalary.setText("연봉 : $"+ employee.salary);
+
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return employeeList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtName;
         TextView txtAge;
@@ -57,27 +64,37 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         CardView cardView;
         ImageView imgDelete;
 
-
-        public ViewHolder(@NonNull View itemView)
-        {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             txtName = itemView.findViewById(R.id.txtName);
             txtAge = itemView.findViewById(R.id.txtAge);
             txtSalary = itemView.findViewById(R.id.txtSalary);
             cardView = itemView.findViewById(R.id.cardView);
             imgDelete = itemView.findViewById(R.id.imgDelete);
 
-            cardView.setOnClickListener(new View.OnClickListener()
-            {
+            cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view)
-                {
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, EditActivity.class);
 
+                    int index = getAdapterPosition();
+                    Employee employee = employeeList.get(index);
+                    intent.putExtra("employee", employee);
+                    intent.putExtra("index", index);
+                    // context.startActivity(intent);
+                    ((MainActivity)context).activityResultLauncher.launch(intent);
+                }
+            });
+
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // todo
                 }
             });
 
         }
-
-
     }
+
 }
